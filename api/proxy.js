@@ -1,29 +1,38 @@
-import { MongoClient } from 'mongodb';
+const { MongoClient } = require('mongodb');
 
-// We define the client outside the handler to reuse the connection
 const client = new MongoClient(process.env.MONGODB_URI);
 
-export default async function handler(req, res) {
-  // Add CORS headers so Cocrea can talk to it
+module.exports = async (req, res) => {
+  // CORS headers so Cocrea can access it
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method === 'OPTIONS') {
+    res.statusCode = 200;
+    res.end();
+    return;
+  }
 
   try {
     await client.connect();
-    const db = client.db("AppConfig"); // Your database name
-    const collection = db.collection("AppConfig"); // Your collection name
+    const db = client.db("AppConfig");
+    const collection = db.collection("AppConfig");
 
+    // Grabs the version, authorized places, and users
     const data = await collection.findOne({ "type": "game_config" });
 
     if (!data) {
-      return res.status(404).json({ error: "Config document not found in MongoDB" });
+      res.statusCode = 404;
+      res.end(JSON.stringify({ error: "AppConfig not found" }));
+      return;
     }
 
-    res.status(200).json(data);
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(data));
   } catch (e) {
-    res.status(500).json({ error: e.message });
+    res.statusCode = 500;
+    res.end(JSON.stringify({ error: e.message }));
   }
-}
+};
