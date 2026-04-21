@@ -4,5 +4,8 @@
   "main": "api/proxy.js",
   "dependencies": {
     "node-fetch": "^3.3.0"
+    "mongodb": "^6.0.0"
+}
+
   }
 }
