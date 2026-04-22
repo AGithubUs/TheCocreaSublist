@@ -1,3 +1,7 @@
+// This tells the browser it's okay to load this script into Cocrea
+/* 
+  Vercel will handle the headers via vercel.json if we add this:
+*/
 (function() {
     class UniversalFetch {
         constructor(runtime) { this.runtime = runtime; }
