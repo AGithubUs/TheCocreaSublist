@@ -1,11 +1,15 @@
 {
+  "version": 2,
   "headers": [
     {
       "source": "/myfetch.js",
       "headers": [
-        { "key": "Content-Type", "value": "text/javascript" },
+        { "key": "Content-Type", "value": "application/javascript" },
         { "key": "Access-Control-Allow-Origin", "value": "*" }
       ]
     }
+  ],
+  "rewrites": [
+    { "source": "/api/proxy", "destination": "/api/proxy.js" }
   ]
 }
