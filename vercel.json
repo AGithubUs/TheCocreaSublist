@@ -7,11 +7,9 @@
         { "key": "Content-Type", "value": "application/javascript" }
       ]
     }
-    }
-    {
+  ],
   "rewrites": [
     { "source": "/api/proxy", "destination": "/api/proxy.js" },
-     { "source": "/api/proxy", "destination": "/api/proxy.js" },
     { "source": "/myfetch.js", "destination": "/myfetch.js" }
   ]
 }
