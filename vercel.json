@@ -1,16 +1,11 @@
 {
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/myfetch.js",
       "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Access-Control-Allow-Methods", "value": "GET,POST,OPTIONS" },
-        { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
+        { "key": "Content-Type", "value": "text/javascript" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
       ]
     }
-  ],
-  "rewrites": [
-    { "source": "/api/proxy", "destination": "/api/proxy.js" },
-    { "source": "/myfetch.js", "destination": "/myfetch.js" }
   ]
 }
