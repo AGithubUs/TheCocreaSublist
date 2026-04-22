@@ -1,7 +1,3 @@
-// This tells the browser it's okay to load this script into Cocrea
-/* 
-  Vercel will handle the headers via vercel.json if we add this:
-*/
 (function() {
     class UniversalFetch {
         constructor(runtime) { this.runtime = runtime; }
@@ -27,7 +23,6 @@
         }
     }
 
-    // This handles both direct console paste AND Gandi IDE loading
     const runtime = (window.vm && window.vm.runtime) || (window.Scratch && window.Scratch.vm && window.Scratch.vm.runtime);
     if (runtime) {
         const extensionInstance = new UniversalFetch(runtime);
