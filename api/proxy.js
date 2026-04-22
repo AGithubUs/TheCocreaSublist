@@ -1,13 +1,14 @@
 const { MongoClient } = require('mongodb');
-
 const client = new MongoClient(process.env.MONGODB_URI);
 
 module.exports = async (req, res) => {
-  // CORS headers so Cocrea can access it
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  // --- MANDATORY CORS HEADERS ---
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Allows all origins (Cocrea, Localhost, etc.)
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
 
+  // Handle the "pre-flight" check (browsers send this before the actual data)
   if (req.method === 'OPTIONS') {
     res.statusCode = 200;
     res.end();
@@ -18,8 +19,6 @@ module.exports = async (req, res) => {
     await client.connect();
     const db = client.db("AppConfig");
     const collection = db.collection("AppConfig");
-
-    // Grabs the version, authorized places, and users
     const data = await collection.findOne({ "type": "game_config" });
 
     if (!data) {
