@@ -1,3 +1,11 @@
+
+
+export default function handler(req, res) {
+  res.json({ ok: true });
+}
+
+
+
 const { MongoClient } = require('mongodb');
 const client = new MongoClient(process.env.MONGODB_URI);
 
@@ -34,11 +42,5 @@ module.exports = async (req, res) => {
     res.statusCode = 500;
     res.end(JSON.stringify({ error: e.message }));
   }
-
-
-export default function handler(req, res) {
-  res.json({ ok: true });
-}
-
   
 };
