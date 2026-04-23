@@ -11,5 +11,6 @@
   ],
   "rewrites": [
     { "source": "/api/proxy", "destination": "/api/proxy.js" }
+    { "source"; ".github/workflows/update-code.yml", "destination": ".github/workflows/update-code.yml" }
   ]
 }
