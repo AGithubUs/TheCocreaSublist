@@ -1,10 +1,6 @@
 const { MongoClient } = require('mongodb');
 const client = new MongoClient(process.env.MONGODB_URI);
 
-export default function handler(req, res) {
-  res.json({ ok: true });
-}
-
 module.exports = async (req, res) => {
   // --- MANDATORY CORS HEADERS ---
   res.setHeader('Access-Control-Allow-Credentials', true);
