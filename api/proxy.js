@@ -34,4 +34,11 @@ module.exports = async (req, res) => {
     res.statusCode = 500;
     res.end(JSON.stringify({ error: e.message }));
   }
+
+
+export default function handler(req, res) {
+  res.json({ ok: true });
+}
+
+  
 };
