@@ -20,3 +20,4 @@ jobs:
           -H "Content-Type: application/json" \
           -H "Authorization: ${{ secrets.API_SECRET }}" \
           -d "{\"play_code\": \"$CODE\"}"
+          echo "RESPONSE: $RESPONSE"
