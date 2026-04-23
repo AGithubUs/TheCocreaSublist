@@ -1,0 +1,22 @@
+name: Update Play Code
+
+on:
+  schedule:
+    - cron: "*/1 * * * *"
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate and send code
+        run: |
+          CODE=$(python -c "import secrets, string; print(''.join(secrets.choice(string.ascii_letters + string.digits) for _ in range(10)))")
+
+          echo "Generated: $CODE"
+
+          curl -X POST https://your-api.com/update-code \
+          -H "Content-Type: application/json" \
+          -H "Authorization: ${{ secrets.API_SECRET }}" \
+          -d "{\"play_code\": \"$CODE\"}"
