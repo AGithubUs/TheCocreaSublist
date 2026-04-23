@@ -11,6 +11,7 @@
   ],
   "rewrites": [
     { "source": "/api/proxy", "destination": "/api/proxy.js" },
-    { "source": "/api/update-code", "destination": "/api/update-code.js" }
+    { "source": "/api/update-code", "destination": "/api/update-code.js" },
+    { "source": "/update-code", "destination": "/api/update-code" }
   ]
 }
