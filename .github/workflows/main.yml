@@ -16,7 +16,7 @@ jobs:
 
           echo "Generated: $CODE"
 
-          curl -X POST https://your-api.com/update-code \
+          curl -X POST https://project-zn2an.vercel.app/update-code \
           -H "Content-Type: application/json" \
           -H "Authorization: ${{ secrets.API_SECRET }}" \
           -d "{\"play_code\": \"$CODE\"}"
